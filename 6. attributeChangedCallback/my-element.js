@@ -3,19 +3,37 @@ class myElement extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
-
-        // Ponemos los atributos en el contructor
-        this.title = this.getAttribute("title");
-        this.paragraph = this.getAttribute("paragraph");
-        this.img = this.getAttribute("img");
     }
+    /** Utilizamos el ciclo de vida
+     *  
+     * Para hacerlo necesitamos poner un observer, donde le vamos a decir los atributos
+     * Los attribute que no se encuentren en la lista, no los tomara en cuenta
+     * 
+     * Aqui le estamos diciendo al observer que solo van a haber esos 3 attr
+    */
+    static get observedAttributes() {
+        return ["title", "paragraph", "img"];
+    }
+
+    /** attributeChangedCallback
+     * Param 1 (currentVal): Valor actual, el valor que existe
+     * Param 2 (oldVal):  Valor viejo, es el valor que estaba
+     * Param 3 (newVal): Valor nuevo, en caso de que exita uno nuevo
+     */
+     attributeChangedCallback(currentVal, oldVal, newVal) {
+        if (oldVal !== newVal) {
+            if (currentVal === "title") this.title = newVal;
+            if (currentVal === "paragraph") this.paragraph = newVal;
+            if (currentVal === "img") this.img = newVal;
+        }
+    }
+
     // Genero directamente el tag template
     getTemplate() {
         // SLOT es el placeholder
         const template = document.createElement("template");
         template.innerHTML =/*html */ `
             <section>
-                <!-- Inyectamos los atributos -->
                 <h2>${this.title}</h2>
                 <div>
                     <p>${this.paragraph}</p>
