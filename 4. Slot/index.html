@@ -8,7 +8,10 @@
 </head>
 <body>
     <h2>I am not a template</h2>
-    <my-element>I am a text out of the component</my-element>
+    <my-element>
+        <span slot="title">I am the title in template</span>
+        <span slot="paragraph">I am the paragraph of slot</span>
+    </my-element>
     <script type="module" src="./my-element.js"></script>
 </body>
 </html>

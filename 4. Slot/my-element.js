@@ -12,8 +12,13 @@ class myElement extends HTMLElement {
             <section>
                 <h2>
                 <!---En el slot tendremos el texto que tenemos en la etiqueta de my element--->
-                    <slot></slot>
+                    <slot name="title"></slot>
                 </h2>
+                <div>
+                    <p>
+                        <slot name="paragraph"></slot>
+                    </p>
+                </div>
             </section>
             ${this.getStyle()}
         `;
