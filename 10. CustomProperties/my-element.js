@@ -32,6 +32,7 @@ class myElement extends HTMLElement {
                 --secondary-color: salmon;
                 --heading-primary: 30px;
                 --heading-secondary: 25px;
+                box-sizing: border-box;
                 display: inline-block;
                 width: 100%;
                 min-width: 300px;
